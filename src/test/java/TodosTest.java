@@ -28,7 +28,7 @@ public class TodosTest {
     }
 
     @Test
-    public void shouldNotFindAnyTask() {
+    public void shouldNotSearchAnyTask() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
 
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
@@ -52,7 +52,7 @@ public class TodosTest {
     }
 
     @Test
-    public void shouldFindOnlyOneTask() {
+    public void shouldSearchOnlyOneTask() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
 
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
@@ -68,18 +68,26 @@ public class TodosTest {
     }
 
     @Test
-    public void shouldFindSomeTasks() {
+    public void shouldSearchAllThreeTasks() {
         SimpleTask simpleTask = new SimpleTask(5, "Купить молоко");
 
         String[] subtasks = {"молоко", "яйца", "хлеб"};
         Epic epic = new Epic(55, subtasks);
 
+        Meetings meeting = new Meetings(
+                555,
+                "Обсуждение, почему пропало молоко",
+                "Кот",
+                "Сегодня вечером"
+        );
+
         Todos todos = new Todos();
 
         todos.add(simpleTask);
         todos.add(epic);
+        todos.add(meeting);
 
-        Task[] expected = {simpleTask, epic};
+        Task[] expected = {simpleTask, epic, meeting};
         Assertions.assertArrayEquals(expected, todos.search("молоко"));
     }
 }
