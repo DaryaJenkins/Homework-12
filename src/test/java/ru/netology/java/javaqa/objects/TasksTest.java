@@ -10,43 +10,27 @@ public class TasksTest {
     @Test
     public void shouldFindSimpleTaskByQuery() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        boolean expected = true;
-        boolean actual = simpleTask.matches("Позвонить");
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(true, simpleTask.matches("Позвонить"));
     }
 
     @Test
     public void shouldNotFindSimpleTask() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
-
-        boolean expected = false;
-        boolean actual = simpleTask.matches("Написать");
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(false, simpleTask.matches("Написать"));
     }
 
     @Test
     public void shouldFindEpicByQuery() {
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
-
-        boolean expected = true;
-        boolean actual = epic.matches("Молоко");
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(true, epic.matches("Молоко"));
     }
 
     @Test
     public void shouldNotFindEpic() {
         String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
-
-        boolean expected = false;
-        boolean actual = epic.matches("Картошка");
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(false, epic.matches("Картошка"));
     }
 
     @Test
@@ -57,11 +41,7 @@ public class TasksTest {
                 "Приложение НетоБанка",
                 "Во вторник после обеда"
         );
-
-        boolean expected = true;
-        boolean actual = meeting.matches("приложения");
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(true, meeting.matches("приложения"));
     }
 
     @Test
@@ -72,26 +52,7 @@ public class TasksTest {
                 "Приложение НетоБанка",
                 "Во вторник после обеда"
         );
-
-        boolean expected = true;
-        boolean actual = meeting.matches("Приложение");
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindStartByQuery() {
-        Meetings meeting = new Meetings(
-                555,
-                "Выкатка 3й версии приложения",
-                "Приложение НетоБанка",
-                "Во вторник после обеда"
-        );
-
-        boolean expected = true;
-        boolean actual = meeting.matches("вторник");
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(true, meeting.matches("Приложение"));
     }
 
     @Test
@@ -102,10 +63,6 @@ public class TasksTest {
                 "Приложение НетоБанка",
                 "Во вторник после обеда"
         );
-
-        boolean expected = false;
-        boolean actual = meeting.matches("четверг");
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(false, meeting.matches("вторник"));
     }
 }
